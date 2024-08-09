@@ -4,13 +4,26 @@ import Nav from "./components/Nav";
 import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [coordinates, setCoordinate] = useState([0, 0]);
+
+  const showCoord = (e) => {
+    const xcoord = e.nativeEvent.offsetX;
+    const ycoord = e.nativeEvent.offsetY;
+    console.log(xcoord + `,` + ycoord);
+    setCoordinate([xcoord, ycoord]);
+  };
 
   return (
     <>
       <div className="mainContent">
         <Nav />
-        <img src={wheresWaldo} width={1700}></img>
+        <div className="gameArea">
+          <img
+            src={wheresWaldo}
+            onClick={(e) => showCoord(e)}
+            width={1700}
+          ></img>
+        </div>
       </div>
     </>
   );
