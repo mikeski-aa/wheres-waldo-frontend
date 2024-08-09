@@ -1,0 +1,14 @@
+.targetBox {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  outline: 2px solid red;
+}
+
+.targetBox.false {
+  display: none;
+}
+
+.targetbox.true {
+  display: block;
+}

@@ -1,0 +1,28 @@
+.dropdownContainer {
+  position: absolute;
+  border-radius: 12px;
+  max-width: fit-content;
+  background-color: rgb(61, 60, 60);
+  padding: 5px;
+}
+
+div[class^="dropdownOption"] {
+  transition: ease-in-out;
+  transition-duration: 0.5s;
+  color: white;
+  border-radius: 12px;
+}
+
+.dropdownContainer.false {
+  display: none;
+}
+
+.dropdownContainer.true {
+  display: block;
+  min-width: 89px;
+}
+
+div[class^="dropdownOption"]:hover {
+  background: rgb(172, 172, 172);
+  cursor: pointer;
+}
