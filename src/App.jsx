@@ -26,6 +26,7 @@ function App() {
     console.log(document.documentElement.scrollLeft);
     const xcoord = e.nativeEvent.offsetX;
     const ycoord = e.nativeEvent.offsetY;
+    console.log(xcoord + `,` + ycoord);
     setCoordinate([xcoord, ycoord]);
     const absoluteX = e.clientX + document.documentElement.scrollLeft;
     const absoluteY = e.clientY + document.documentElement.scrollTop;
