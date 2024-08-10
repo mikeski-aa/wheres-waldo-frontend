@@ -70,4 +70,21 @@ async function updateUser(resultObject, userId) {
   }
 }
 
-export { createUser, checkCoordinates, updateUser };
+async function checkWin(userId) {
+  const url = `http://localhost:3000/api/checkwin/${userId}`;
+
+  try {
+    const response = await fetch(url, { method: "GET" });
+
+    if (!response.ok) {
+      throw new Error(`Error: ${response.status}`);
+    }
+
+    const json = await response.json();
+    return json;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export { createUser, checkCoordinates, updateUser, checkWin };

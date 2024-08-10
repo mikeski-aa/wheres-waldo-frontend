@@ -3,7 +3,12 @@ import wheresWaldo from "../src/assets/925901.jpg";
 import Nav from "./components/Nav";
 import Dropdown from "./components/Dropdown";
 import Targetbox from "./components/Targetbox";
-import { createUser, checkCoordinates, updateUser } from "./lib/service";
+import {
+  createUser,
+  checkCoordinates,
+  updateUser,
+  checkWin,
+} from "./lib/service";
 import "./App.css";
 
 // when a coordiante is selected, it needs to be compared with the general hitbox
@@ -44,6 +49,9 @@ function App() {
     setDropdownY(absoluteY);
     setTargetX(absoluteX);
     setTargetY(absoluteY);
+
+    // main game, TO DO put it in its own function later
+
     const coordResult = await checkCoordinates(xcoord, ycoord);
     // coords returned do not match any of the image coords
     if (!coordResult) {
@@ -52,7 +60,8 @@ function App() {
     // coords match, need to update user table
     const updateResult = await updateUser(coordResult, userId);
     // TO DO: Add check to se if 3/3 items have been found
-    console.log(updateResult);
+    const winStatus = await checkWin(userId);
+    console.log(winStatus);
   };
 
   // game start
