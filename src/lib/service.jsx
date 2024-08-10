@@ -1,3 +1,4 @@
+// call API to create a user
 async function createUser() {
   const url = `http://localhost:3000/api/newuser`;
 
@@ -20,6 +21,7 @@ async function createUser() {
   }
 }
 
+// call api to GET coords checked/compared
 async function checkCoordinates(xcoord, ycoord) {
   // url- query === ?nameItem=VALUE&anotherItem=VALUE2
   const dataString = `xcoord=${xcoord}&ycoord=${ycoord}`;
@@ -39,4 +41,8 @@ async function checkCoordinates(xcoord, ycoord) {
   }
 }
 
-export { createUser, checkCoordinates };
+async function updateUser(resultObject, userId) {
+  const url = `http://localhost:3000/api/putuser/${userId}`;
+}
+
+export { createUser, checkCoordinates, updateUser };

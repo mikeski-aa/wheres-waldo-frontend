@@ -3,7 +3,7 @@ import wheresWaldo from "../src/assets/925901.jpg";
 import Nav from "./components/Nav";
 import Dropdown from "./components/Dropdown";
 import Targetbox from "./components/Targetbox";
-import { createUser, checkCoordinates } from "./lib/service";
+import { createUser, checkCoordinates, updateUser } from "./lib/service";
 import "./App.css";
 
 // when a coordiante is selected, it needs to be compared with the general hitbox
@@ -26,7 +26,8 @@ function App() {
   let [counter, setCounter] = useState(0);
 
   // on click gets coordinates of click
-  // this is kinda ugly and big, and does way too many things, however, I'm not sure best way of splitting it up since many things occur on one click
+  // this is kinda ugly and big, and does way too many things,
+  // however, I'm not sure best way of splitting it up since many things occur on one click
   const showCoord = async (e) => {
     console.log(document.documentElement.scrollLeft);
     const xcoord = e.nativeEvent.offsetX;
@@ -37,12 +38,21 @@ function App() {
     console.log(xcoord + `,` + ycoord);
     setCoordinate([xcoord, ycoord]);
     setShowTarget(!showTarget);
+    // sharing same values? maybe can do it in a shared state instead?
+    // refactor
     setdropdownX(absoluteX);
     setDropdownY(absoluteY);
     setTargetX(absoluteX);
     setTargetY(absoluteY);
-    const result = await checkCoordinates(xcoord, ycoord);
-    console.log(result);
+    const coordResult = await checkCoordinates(xcoord, ycoord);
+    // coords returned do not match any of the image coords
+    if (!coordResult) {
+      console.log("bad result");
+    }
+    // coords match, need to update user table
+    const updateResult = await updateUser(coordResult, userId);
+    // TO DO: Add check to se if 3/3 items have been found
+    console.log(coordResult);
   };
 
   // game start
