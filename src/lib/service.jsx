@@ -87,4 +87,39 @@ async function checkWin(userId) {
   }
 }
 
-export { createUser, checkCoordinates, updateUser, checkWin };
+async function stopTimer(userId) {
+  const url = `http://localhost:3000/api/puttimer/${userId}`;
+  try {
+    const response = await fetch(url, { method: "PUT" });
+    if (!response.ok) {
+      throw new Error(`Error: ${response.status}`);
+    }
+
+    const json = response.json();
+    return json;
+  } catch (error) {}
+}
+
+async function getFinalTime(userId) {
+  const url = `http://localhost:3000/api/getfinaltime/${userId}`;
+
+  try {
+    const response = await fetch(url, { method: "GET" });
+
+    if (!response.ok) {
+      throw new Error(`Error: ${response.status}`);
+    }
+
+    const json = response.json();
+    return json;
+  } catch (error) {}
+}
+
+export {
+  createUser,
+  checkCoordinates,
+  updateUser,
+  checkWin,
+  stopTimer,
+  getFinalTime,
+};

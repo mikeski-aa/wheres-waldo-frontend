@@ -8,6 +8,8 @@ import {
   checkCoordinates,
   updateUser,
   checkWin,
+  stopTimer,
+  getFinalTime,
 } from "./lib/service";
 import "./App.css";
 
@@ -50,7 +52,9 @@ function App() {
     setTargetX(absoluteX);
     setTargetY(absoluteY);
 
+    /////////////////////////////////////////////////////
     // main game, TO DO put it in its own function later
+    /////////////////////////////////////////////////////
 
     const coordResult = await checkCoordinates(xcoord, ycoord);
     // coords returned do not match any of the image coords
@@ -59,8 +63,21 @@ function App() {
     }
     // coords match, need to update user table
     const updateResult = await updateUser(coordResult, userId);
-    // TO DO: Add check to se if 3/3 items have been found
+    // checking if 3 items have been found
     const winStatus = await checkWin(userId);
+    if (!winStatus) {
+      return console.log("continue the game, not won");
+    }
+    // when a user won, we stop the serverside timer and local timer
+    const serverTimerStop = await stopTimer(userId);
+    console.log(serverTimerStop);
+
+    // get final time it took to complete this task from when user clicked start
+    const finalTime = await getFinalTime(userId);
+    console.log(userId);
+    // we then need to prompt the user to add their username to the leaderboard.
+    // let's open a modal which displays their time, and then prompts them for their user which we will update on the leaderboards.
+
     console.log(winStatus);
   };
 
