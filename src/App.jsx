@@ -12,6 +12,7 @@ import {
   getFinalTime,
 } from "./lib/service";
 import "./App.css";
+import EndGameModal from "./components/EndGameModal";
 
 // when a coordiante is selected, it needs to be compared with the general hitbox
 // hitbox should be 15x15 pixels for initial testing, to be increased in case the user experience is not good.
@@ -22,6 +23,7 @@ import "./App.css";
 
 function App() {
   const [userId, setUserId] = useState();
+  const [endGameModal, setEndGameModal] = useState(true);
   const [coordinates, setCoordinate] = useState([0, 0]);
   const [dropdownShow, setDropdownShow] = useState(false);
   const [dropdownX, setdropdownX] = useState("0px");
@@ -65,20 +67,21 @@ function App() {
     const updateResult = await updateUser(coordResult, userId);
     // checking if 3 items have been found
     const winStatus = await checkWin(userId);
+
     if (!winStatus) {
       return console.log("continue the game, not won");
     }
+    console.log(winStatus);
     // when a user won, we stop the serverside timer and local timer
     const serverTimerStop = await stopTimer(userId);
     console.log(serverTimerStop);
 
     // get final time it took to complete this task from when user clicked start
     const finalTime = await getFinalTime(userId);
-    console.log(userId);
+    console.log(finalTime);
+
     // we then need to prompt the user to add their username to the leaderboard.
     // let's open a modal which displays their time, and then prompts them for their user which we will update on the leaderboards.
-
-    console.log(winStatus);
   };
 
   // game start
@@ -102,6 +105,7 @@ function App() {
 
   return (
     <>
+      <EndGameModal visibility={endGameModal} />
       <button onClick={gameStartHandler}>Start game</button>
       <p>{counter / 10}</p>
       <Targetbox targetshow={showTarget} targetX={targetX} targetY={targetY} />

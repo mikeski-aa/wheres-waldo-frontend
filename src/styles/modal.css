@@ -1,0 +1,51 @@
+.modal.false {
+  display: none;
+}
+
+.modal.true {
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgb(95, 95, 95);
+  opacity: 0.7;
+  backdrop-filter: blur(10px);
+  z-index: 10;
+}
+
+.endGameContainer {
+  position: relative;
+  top: 50%;
+  left: 20%;
+  background-color: #ffffff;
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;
+  padding: 12px;
+  box-shadow: 10px 10px 10px grey;
+  backdrop-filter: blur(10px);
+}
+
+.containerHeader {
+  text-align: center;
+  font-size: 3rem;
+}
+
+.containerMainTime {
+  font-size: 5rem;
+  text-align: center;
+}
+
+.optionalUsername {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1.5rem;
+}
+
+.optionalUsername > input {
+  height: 1.5rem;
+  text-align: center;
+  font-size: 1.5rem;
+}
