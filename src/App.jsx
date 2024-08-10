@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import wheresWaldo from "../src/assets/925901.jpg";
 import Nav from "./components/Nav";
 import Dropdown from "./components/Dropdown";
@@ -20,17 +20,20 @@ function App() {
   const [showTarget, setShowTarget] = useState(false);
   const [targetX, setTargetX] = useState("0px");
   const [targetY, setTargetY] = useState("0px");
+  const [startCount, setStartCount] = useState(false);
+  let [counter, setCounter] = useState(0);
 
   // on click gets coordinates of click
+  // this is kinda ugly and big, and does way too many things, however, I'm not sure best way of splitting it up since many things occur on one click
   const showCoord = (e) => {
     console.log(document.documentElement.scrollLeft);
     const xcoord = e.nativeEvent.offsetX;
     const ycoord = e.nativeEvent.offsetY;
-    console.log(xcoord + `,` + ycoord);
-    setCoordinate([xcoord, ycoord]);
     const absoluteX = e.clientX + document.documentElement.scrollLeft;
     const absoluteY = e.clientY + document.documentElement.scrollTop;
     setDropdownShow(!dropdownShow);
+    console.log(xcoord + `,` + ycoord);
+    setCoordinate([xcoord, ycoord]);
     setShowTarget(!showTarget);
     setdropdownX(absoluteX);
     setDropdownY(absoluteY);
@@ -38,8 +41,28 @@ function App() {
     setTargetY(absoluteY);
   };
 
+  // game start
+  const gameStartHandler = () => {
+    setStartCount(!startCount);
+    console.log(startCount);
+  };
+
+  // use effect for showing local counter, additional timer required on backend side to make sure timer cannot be manipulated
+  useEffect(() => {
+    if (startCount === true) {
+      const key = setInterval(() => {
+        setCounter((counter) => counter + 1);
+      }, 100);
+
+      // cleanup function to stop the timer going crazy
+      return () => clearInterval(key);
+    }
+  }, [startCount]);
+
   return (
     <>
+      <button onClick={gameStartHandler}>Start game</button>
+      <p>{counter / 10}</p>
       <Targetbox targetshow={showTarget} targetX={targetX} targetY={targetY} />
       <Dropdown
         dropdown={dropdownShow}
@@ -48,7 +71,6 @@ function App() {
       />
       <div className="mainContent">
         <div className="header">
-          <div>LOGO</div>
           <Nav />
         </div>
 
