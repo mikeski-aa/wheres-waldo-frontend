@@ -3,6 +3,7 @@ import wheresWaldo from "../src/assets/925901.jpg";
 import Nav from "./components/Nav";
 import Dropdown from "./components/Dropdown";
 import Targetbox from "./components/Targetbox";
+import { createUser, checkCoordinates } from "./lib/service";
 import "./App.css";
 
 // when a coordiante is selected, it needs to be compared with the general hitbox
@@ -13,6 +14,7 @@ import "./App.css";
 // the dropdown menu needs to be placed relative to the cursor, hence for this we can use e.clientX, e.clientY
 
 function App() {
+  const [userId, setUserId] = useState();
   const [coordinates, setCoordinate] = useState([0, 0]);
   const [dropdownShow, setDropdownShow] = useState(false);
   const [dropdownX, setdropdownX] = useState("0px");
@@ -25,7 +27,7 @@ function App() {
 
   // on click gets coordinates of click
   // this is kinda ugly and big, and does way too many things, however, I'm not sure best way of splitting it up since many things occur on one click
-  const showCoord = (e) => {
+  const showCoord = async (e) => {
     console.log(document.documentElement.scrollLeft);
     const xcoord = e.nativeEvent.offsetX;
     const ycoord = e.nativeEvent.offsetY;
@@ -39,12 +41,15 @@ function App() {
     setDropdownY(absoluteY);
     setTargetX(absoluteX);
     setTargetY(absoluteY);
+    const result = await checkCoordinates(xcoord, ycoord);
+    console.log(result);
   };
 
   // game start
-  const gameStartHandler = () => {
-    setStartCount(!startCount);
-    console.log(startCount);
+  const gameStartHandler = async () => {
+    // setStartCount(!startCount);
+    const newUser = await createUser();
+    setUserId(newUser.id);
   };
 
   // use effect for showing local counter, additional timer required on backend side to make sure timer cannot be manipulated
