@@ -47,12 +47,12 @@ function App() {
     const coordResult = await checkCoordinates(xcoord, ycoord);
     // coords returned do not match any of the image coords
     if (!coordResult) {
-      console.log("bad result");
+      return console.log("bad result");
     }
     // coords match, need to update user table
     const updateResult = await updateUser(coordResult, userId);
     // TO DO: Add check to se if 3/3 items have been found
-    console.log(coordResult);
+    console.log(updateResult);
   };
 
   // game start

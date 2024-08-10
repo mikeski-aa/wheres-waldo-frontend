@@ -5,8 +5,6 @@ async function createUser() {
   try {
     const response = await fetch(url, {
       method: "POST",
-      "Content-Type": "application/json",
-      Accept: "application/json",
     });
 
     if (!response.ok) {
@@ -43,6 +41,33 @@ async function checkCoordinates(xcoord, ycoord) {
 
 async function updateUser(resultObject, userId) {
   const url = `http://localhost:3000/api/putuser/${userId}`;
+
+  const toSend = {
+    id: resultObject.id,
+  };
+
+  console.log(toSend);
+
+  try {
+    const response = await fetch(url, {
+      method: "PUT",
+      // dont forget to include this header since i'm not using axios
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify(toSend),
+    });
+
+    if (!response.ok) {
+      throw new Error(`Error: ${response.status}`);
+    }
+
+    const json = response.json();
+    return json;
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 export { createUser, checkCoordinates, updateUser };
