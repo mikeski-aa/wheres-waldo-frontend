@@ -117,9 +117,26 @@ async function getFinalTime(userId) {
 }
 
 async function updateUserName(userId, name) {
-  const url = `http://localhost:3000/api/putname?id=${userId}&username=${name}`;
-
+  const url = `http://localhost:3000/api/putname/${userId}`;
+  const newbody = {
+    username: name,
+  };
   try {
+    const response = await fetch(url, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify(newbody),
+    });
+
+    if (!response.ok) {
+      throw new Error(`Error: ${response.status}`);
+    }
+
+    const json = await response.json();
+    return json;
   } catch (error) {
     console.log(error);
   }
@@ -132,4 +149,5 @@ export {
   checkWin,
   stopTimer,
   getFinalTime,
+  updateUserName,
 };

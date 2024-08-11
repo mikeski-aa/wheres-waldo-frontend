@@ -46,10 +46,10 @@ function App() {
     const ycoord = e.nativeEvent.offsetY;
     const absoluteX = e.clientX + document.documentElement.scrollLeft;
     const absoluteY = e.clientY + document.documentElement.scrollTop;
-    setDropdownShow(!dropdownShow);
+    setDropdownShow(true);
     console.log(xcoord + `,` + ycoord);
     setCoordinate([xcoord, ycoord]);
-    setShowTarget(!showTarget);
+    setShowTarget(true);
     // sharing same values? maybe can do it in a shared state instead?
     // refactor
     setdropdownX(absoluteX);

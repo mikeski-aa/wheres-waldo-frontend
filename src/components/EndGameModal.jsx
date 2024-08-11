@@ -1,11 +1,17 @@
 import { useState } from "react";
+import { updateUserName } from "../lib/service";
 import "../styles/modal.css";
 
 function EndGameModal(props) {
   const [username, setUsername] = useState("");
-  const okClickHandler = async () => {};
+  const okClickHandler = async () => {
+    if (username === "") {
+      return;
+    }
+    const response = await updateUserName(props.userid, username);
+    console.log(response);
+  };
   const handleNameInput = (e) => {
-    console.log(e.target.value);
     setUsername(e.target.value);
   };
   return (
