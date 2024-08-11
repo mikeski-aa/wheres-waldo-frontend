@@ -13,17 +13,20 @@ import {
 } from "./lib/service";
 import "./App.css";
 import EndGameModal from "./components/EndGameModal";
+import StartGameModal from "./components/StartGameModal";
 
 // when a coordiante is selected, it needs to be compared with the general hitbox
-// hitbox should be 15x15 pixels for initial testing, to be increased in case the user experience is not good.
+// hitbox should be 16x16 pixels for initial testing, to be increased in case the user experience is not good.
 // if the hitbox is too small, user experience will suffer
 
-// on click the dropdown needs to appear. Dropdown will be positioned absolutely to appear over things.
+// on click the dropdown needs to appear. Dropdown will be positioned absolutely/fixed to appear over things.
 // the dropdown menu needs to be placed relative to the cursor, hence for this we can use e.clientX, e.clientY
 
 function App() {
+  const [gameStart, setGameStart] = useState(false);
+  const [dbFinalTime, setdbFinalTime] = useState(0);
   const [userId, setUserId] = useState();
-  const [endGameModal, setEndGameModal] = useState(true);
+  const [endGameModal, setEndGameModal] = useState(false);
   const [coordinates, setCoordinate] = useState([0, 0]);
   const [dropdownShow, setDropdownShow] = useState(false);
   const [dropdownX, setdropdownX] = useState("0px");
@@ -78,7 +81,10 @@ function App() {
 
     // get final time it took to complete this task from when user clicked start
     const finalTime = await getFinalTime(userId);
+    setdbFinalTime(finalTime);
     console.log(finalTime);
+    setStartCount(!startCount);
+    setEndGameModal(!endGameModal);
 
     // we then need to prompt the user to add their username to the leaderboard.
     // let's open a modal which displays their time, and then prompts them for their user which we will update on the leaderboards.
@@ -86,9 +92,10 @@ function App() {
 
   // game start
   const gameStartHandler = async () => {
-    // setStartCount(!startCount);
     const newUser = await createUser();
     setUserId(newUser.id);
+    setStartCount(!startCount);
+    setGameStart(true);
   };
 
   // use effect for showing local counter, additional timer required on backend side to make sure timer cannot be manipulated
@@ -105,9 +112,11 @@ function App() {
 
   return (
     <>
-      <EndGameModal visibility={endGameModal} />
-      <button onClick={gameStartHandler}>Start game</button>
-      <p>{counter / 10}</p>
+      <EndGameModal
+        visibility={endGameModal}
+        finaltime={dbFinalTime}
+        userid={userId}
+      />
       <Targetbox targetshow={showTarget} targetX={targetX} targetY={targetY} />
       <Dropdown
         dropdown={dropdownShow}
@@ -117,10 +126,16 @@ function App() {
       <div className="mainContent">
         <div className="header">
           <Nav />
+          <h2>{counter / 10}</h2>
         </div>
 
         <div className="gameArea" width={1700}>
+          <StartGameModal
+            gamestate={gameStart}
+            buttonaction={gameStartHandler}
+          />
           <img
+            className={`gameBoardPic ${gameStart}`}
             src={wheresWaldo}
             onClick={(e) => showCoord(e)}
             width={1700}

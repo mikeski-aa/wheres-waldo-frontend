@@ -7,5 +7,22 @@ body {
 
 .header {
   display: flex;
-  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+}
+
+.gameArea {
+  min-width: fit-content;
+}
+
+.gameBoardPic.false {
+  display: none;
+}
+
+.gameBoardPic.true {
+  display: block;
+}
+
+.gameBoardPic.true:hover {
+  cursor: pointer;
 }

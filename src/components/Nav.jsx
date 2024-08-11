@@ -7,6 +7,7 @@ function Nav() {
         <div className="optionOne">Game one</div>
         <div className="optionTwo">Game two</div>
         <div className="optionThree">Game three</div>
+        <button>leaderboards</button>
       </div>
     </>
   );

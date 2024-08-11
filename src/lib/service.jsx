@@ -81,6 +81,7 @@ async function checkWin(userId) {
     }
 
     const json = await response.json();
+    console.log(response);
     return json;
   } catch (error) {
     console.log(error);
@@ -113,6 +114,15 @@ async function getFinalTime(userId) {
     const json = response.json();
     return json;
   } catch (error) {}
+}
+
+async function updateUserName(userId, name) {
+  const url = `http://localhost:3000/api/putname?id=${userId}&username=${name}`;
+
+  try {
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 export {
