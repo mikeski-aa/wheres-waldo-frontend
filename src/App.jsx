@@ -33,6 +33,7 @@ function App() {
   const [showTarget, setShowTarget] = useState(false);
   const [startCount, setStartCount] = useState(false);
   const [leaderboardModal, setLeaderboardModal] = useState(false);
+  const [leaderboard, setLeaderboard] = useState([]);
   let [counter, setCounter] = useState(0);
 
   // on click gets coordinates of click
@@ -74,6 +75,7 @@ function App() {
       <LeaderboardsModal
         show={leaderboardModal}
         setShow={setLeaderboardModal}
+        leaderboard={leaderboard}
       />
       <Logo />
       <EndGameModal
@@ -121,7 +123,7 @@ function App() {
       />
       <div className="mainContent">
         <div className="header">
-          <Nav setModal={setLeaderboardModal} />
+          <Nav setModal={setLeaderboardModal} setLeaderboard={setLeaderboard} />
           <div className={`game ${gameStart}`}>
             <h4>Time elapsed:</h4>
             <h4 className="counterTitle">{counter / 10}</h4>

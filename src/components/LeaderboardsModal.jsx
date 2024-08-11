@@ -1,40 +1,26 @@
 import "../styles/leaderboardsmodal.css";
-import { GetLeaderboards } from "../lib/service";
-import { useEffect, useState } from "react";
 
 function LeaderboardsModal(props) {
-  const [leaderboards, setLeaderboards] = useState([]);
   const handleCloseClick = () => {
     props.setShow(false);
   };
 
-  const test = async () => {
-    const datest = await GetLeaderboards();
-    setLeaderboards(datest);
-    console.log(datest);
-  };
-
-  //   GetLeaderboards.then((resolve) => {
-  //     setLeaderboards(resolve);
-  //   }).catch((error) => {
-  //     console.log(error);
-  //   });
-
-  //   useEffect(() => {
-  //     const getBoard = async () => {
-  //       const response = await GetLeaderboards();
-
-  //       setLeaderboards(response);
-  //     };
-  //     getBoard();
-  //   }, []);
-  console.log(leaderboards);
-
+  console.log(props.leaderboard);
   return (
     <>
       <div className={`lboardModal ${props.show}`}>
         <div className="lboardContainer">
           <button onClick={handleCloseClick}>Close</button>
+          <table className="myTable">
+            {props.leaderboard.map((item) => {
+              return (
+                <tr key={item.id}>
+                  <td>{item.username}</td>
+                  <td>{item.gametime}</td>
+                </tr>
+              );
+            })}
+          </table>
         </div>
       </div>
     </>

@@ -12,3 +12,14 @@
 .lboardModal.false {
   display: none;
 }
+
+.lboardContainer {
+  width: 100vw;
+  height: 100vh;
+}
+
+.myTable {
+  position: absolute;
+  top: 50;
+  left: 50;
+}
