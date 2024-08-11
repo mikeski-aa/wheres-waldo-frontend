@@ -1,8 +1,8 @@
 import "../styles/targetbox.css";
 
 function Targetbox(props) {
-  const targetX = props.targetX - 8 + "px";
-  const targetY = props.targetY - 8 + "px";
+  const targetX = props.coords[0] - 8 + "px";
+  const targetY = props.coords[1] - 8 + "px";
   return (
     <>
       <div

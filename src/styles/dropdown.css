@@ -3,14 +3,10 @@
   border-radius: 12px;
   max-width: fit-content;
   background-color: rgb(61, 60, 60);
-  padding: 5px;
+  padding: 10px;
 }
 
 div[class^="dropdownOption"] {
-  transition: ease-in-out;
-  transition-duration: 0.5s;
-  color: white;
-  border-radius: 12px;
 }
 
 .dropdownContainer.false {
@@ -19,10 +15,15 @@ div[class^="dropdownOption"] {
 
 .dropdownContainer.true {
   display: block;
-  min-width: 89px;
 }
 
-div[class^="dropdownOption"]:hover {
-  background: rgb(172, 172, 172);
+.targetImg:hover {
+  outline: 5px solid greenyellow;
   cursor: pointer;
+}
+
+.targetImg {
+  height: 5vh;
+  transition: ease-in-out;
+  transition-duration: 0.5s;
 }

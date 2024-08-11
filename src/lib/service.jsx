@@ -20,9 +20,9 @@ async function createUser() {
 }
 
 // call api to GET coords checked/compared
-async function checkCoordinates(xcoord, ycoord) {
+async function checkCoordinates(xcoord, ycoord, targetid) {
   // url- query === ?nameItem=VALUE&anotherItem=VALUE2
-  const dataString = `xcoord=${xcoord}&ycoord=${ycoord}`;
+  const dataString = `xcoord=${xcoord}&ycoord=${ycoord}&targetid=${targetid}`;
   const url = `http://localhost:3000/api/check?${dataString}`;
 
   try {
@@ -33,6 +33,7 @@ async function checkCoordinates(xcoord, ycoord) {
     }
 
     const json = await response.json();
+    console.log(json);
     return json;
   } catch (error) {
     console.log(error);
