@@ -3,20 +3,14 @@ import wheresWaldo from "../src/assets/925901.jpg";
 import Nav from "./components/Nav";
 import Dropdown from "./components/Dropdown";
 import Targetbox from "./components/Targetbox";
-import {
-  createUser,
-  checkCoordinates,
-  updateUser,
-  checkWin,
-  stopTimer,
-  getFinalTime,
-} from "./lib/service";
+import { createUser } from "./lib/service";
 import "./App.css";
 import EndGameModal from "./components/EndGameModal";
 import StartGameModal from "./components/StartGameModal";
 import ConfirmBox from "./components/ConfirmTarget";
 import Logo from "./components/Logo";
 import Targets from "./components/Targets";
+import LeaderboardsModal from "./components/LeaderboardsModal";
 
 // when a coordiante is selected, it needs to be compared with the general hitbox
 // hitbox should be 16x16 pixels for initial testing, to be increased in case the user experience is not good.
@@ -38,6 +32,7 @@ function App() {
   const [endGameModal, setEndGameModal] = useState(false);
   const [showTarget, setShowTarget] = useState(false);
   const [startCount, setStartCount] = useState(false);
+  const [leaderboardModal, setLeaderboardModal] = useState(false);
   let [counter, setCounter] = useState(0);
 
   // on click gets coordinates of click
@@ -76,6 +71,10 @@ function App() {
 
   return (
     <>
+      <LeaderboardsModal
+        show={leaderboardModal}
+        setShow={setLeaderboardModal}
+      />
       <Logo />
       <EndGameModal
         visibility={endGameModal}
@@ -122,12 +121,10 @@ function App() {
       />
       <div className="mainContent">
         <div className="header">
-          <Nav />
+          <Nav setModal={setLeaderboardModal} />
           <div className={`game ${gameStart}`}>
             <h4>Time elapsed:</h4>
-
             <h4 className="counterTitle">{counter / 10}</h4>
-
             <Targets />
           </div>
         </div>
