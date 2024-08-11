@@ -21,7 +21,7 @@ function EndGameModal(props) {
           <div className="containerHeader">
             Congratualations, you found all three characters in:
           </div>
-          <div className="containerMainTime">{props.finaltime}</div>
+          <div className="containerMainTime">{props.finaltime} seconds</div>
           <div className="nameInput">
             <form className="optionalUsername" method="none">
               <label htmlFor="username">

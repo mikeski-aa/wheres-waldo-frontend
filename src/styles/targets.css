@@ -1,0 +1,10 @@
+.findTargets {
+  display: flex;
+  gap: 1rem;
+}
+
+.targetContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

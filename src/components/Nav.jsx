@@ -4,10 +4,10 @@ function Nav() {
   return (
     <>
       <div className="navBarContainer">
-        <div className="optionOne">Game one</div>
-        <div className="optionTwo">Game two</div>
-        <div className="optionThree">Game three</div>
-        <button>leaderboards</button>
+        <button className="optionOne">Game one</button>
+        <button className="optionTwo">Game two</button>
+        <button className="optionThree">Game three</button>
+        <button className="leaderboardsBtn">leaderboards</button>
       </div>
     </>
   );

@@ -8,6 +8,7 @@ import {
   checkWin,
   stopTimer,
   getFinalTime,
+  putFinalTime,
 } from "../lib/service";
 
 function Dropdown(props) {
@@ -75,6 +76,7 @@ function Dropdown(props) {
     // get final time it took to complete this task from when user clicked start
     const finalTime = await getFinalTime(userId);
     props.setFinalTime(finalTime);
+    const updateTime = await putFinalTime(userId, finalTime);
     props.setStartCount(!props.startCount);
     props.setEndGameModal(!props.endGameModal);
     // we then need to prompt the user to add their username to the leaderboard.

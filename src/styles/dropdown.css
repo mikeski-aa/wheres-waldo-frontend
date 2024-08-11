@@ -6,9 +6,6 @@
   padding: 10px;
 }
 
-div[class^="dropdownOption"] {
-}
-
 .dropdownContainer.false {
   display: none;
 }

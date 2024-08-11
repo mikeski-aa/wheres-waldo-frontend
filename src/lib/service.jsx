@@ -139,6 +139,24 @@ async function updateUserName(userId, name) {
   }
 }
 
+async function putFinalTime(userId, time) {
+  const datastring = `userid=${userId}&time=${time}`;
+  const url = `http://localhost:3000/api/putfinaltime?${datastring}`;
+
+  try {
+    const response = await fetch(url, { method: "PUT" });
+
+    if (!response.ok) {
+      throw new Error(`Error: ${response.status}`);
+    }
+
+    const json = await response.json();
+    return json;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 export {
   createUser,
   checkCoordinates,
@@ -147,4 +165,5 @@ export {
   stopTimer,
   getFinalTime,
   updateUserName,
+  putFinalTime,
 };

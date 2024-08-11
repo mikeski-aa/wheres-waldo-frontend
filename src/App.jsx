@@ -15,6 +15,8 @@ import "./App.css";
 import EndGameModal from "./components/EndGameModal";
 import StartGameModal from "./components/StartGameModal";
 import ConfirmBox from "./components/ConfirmTarget";
+import Logo from "./components/Logo";
+import Targets from "./components/Targets";
 
 // when a coordiante is selected, it needs to be compared with the general hitbox
 // hitbox should be 16x16 pixels for initial testing, to be increased in case the user experience is not good.
@@ -74,6 +76,7 @@ function App() {
 
   return (
     <>
+      <Logo />
       <EndGameModal
         visibility={endGameModal}
         finaltime={dbFinalTime}
@@ -120,7 +123,13 @@ function App() {
       <div className="mainContent">
         <div className="header">
           <Nav />
-          <h2>{counter / 10}</h2>
+          <div className={`game ${gameStart}`}>
+            <h4>Time elapsed:</h4>
+
+            <h4 className="counterTitle">{counter / 10}</h4>
+
+            <Targets />
+          </div>
         </div>
 
         <div className="gameArea" width={1700}>
