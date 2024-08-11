@@ -6,7 +6,7 @@ function Targetbox(props) {
   return (
     <>
       <div
-        className={`targetBox ${props.targetshow}`}
+        className={`targetBox ${props.targetshow} ${props.targetnumber}`}
         style={{ top: targetY, left: targetX }}
       ></div>
     </>

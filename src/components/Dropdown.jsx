@@ -24,8 +24,10 @@ function Dropdown(props) {
       input
     );
     props.setDropdown(false);
+    props.setShowTarget(false);
+
     /////////////////////////////////////////////////////
-    // main game, TO DO put it in its own function later
+    // main game logic
     /////////////////////////////////////////////////////
 
     // const coordResult = await checkCoordinates(xcoord, ycoord);
@@ -33,6 +35,28 @@ function Dropdown(props) {
     if (!response) {
       return console.log("bad result");
     }
+
+    // simple conditional to set a green target box identifying you found one of the targets
+    if (response.id === 1) {
+      props.setConfirmOne([
+        true,
+        props.dropdowncoords[0],
+        props.dropdowncoords[1],
+      ]);
+    } else if (response.id === 2) {
+      props.setConfirmTwo([
+        true,
+        props.dropdowncoords[0],
+        props.dropdowncoords[1],
+      ]);
+    } else if (response.id === 3) {
+      props.setConfirmThree([
+        true,
+        props.dropdowncoords[0],
+        props.dropdowncoords[1],
+      ]);
+    }
+
     // coords match, need to update user table
     // additioanlly we need to check if the selected picture matches the one user selected
     const updateResult = await updateUser(response, userId);

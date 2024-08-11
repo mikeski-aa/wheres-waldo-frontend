@@ -33,7 +33,6 @@ async function checkCoordinates(xcoord, ycoord, targetid) {
     }
 
     const json = await response.json();
-    console.log(json);
     return json;
   } catch (error) {
     console.log(error);
@@ -46,8 +45,6 @@ async function updateUser(resultObject, userId) {
   const toSend = {
     id: resultObject.id,
   };
-
-  console.log(toSend);
 
   try {
     const response = await fetch(url, {
@@ -82,7 +79,6 @@ async function checkWin(userId) {
     }
 
     const json = await response.json();
-    console.log(response);
     return json;
   } catch (error) {
     console.log(error);

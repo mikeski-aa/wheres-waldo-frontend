@@ -5,10 +5,19 @@
   outline: 2px solid red;
 }
 
-.targetBox.false {
+.confirmTarget {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  outline: 2px solid green;
+}
+
+.targetBox.false,
+.confirmTarget.false {
   display: none;
 }
 
-.targetbox.true {
+.targetbox.true,
+.confirmTarget.true {
   display: block;
 }

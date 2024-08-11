@@ -14,6 +14,7 @@ import {
 import "./App.css";
 import EndGameModal from "./components/EndGameModal";
 import StartGameModal from "./components/StartGameModal";
+import ConfirmBox from "./components/ConfirmTarget";
 
 // when a coordiante is selected, it needs to be compared with the general hitbox
 // hitbox should be 16x16 pixels for initial testing, to be increased in case the user experience is not good.
@@ -23,17 +24,18 @@ import StartGameModal from "./components/StartGameModal";
 // the dropdown menu needs to be placed relative to the cursor, hence for this we can use e.clientX, e.clientY
 
 function App() {
-  const [gameStart, setGameStart] = useState(false);
-  const [dbFinalTime, setdbFinalTime] = useState(0);
   const [userId, setUserId] = useState();
-  const [endGameModal, setEndGameModal] = useState(false);
+  const [dbFinalTime, setdbFinalTime] = useState(0);
   const [coordinates, setCoordinate] = useState([0, 0]);
-  const [dropdownShow, setDropdownShow] = useState(false);
   const [absoluteCoords, setAbsoluteCoords] = useState([0, 0]);
+  const [confirmOne, setConfirmOne] = useState([false, 0, 0]);
+  const [confirmTwo, setConfirmTwo] = useState([false, 0, 0]);
+  const [confirmThree, setConfirmThree] = useState([false, 0, 0]);
+  const [gameStart, setGameStart] = useState(false);
+  const [dropdownShow, setDropdownShow] = useState(false);
+  const [endGameModal, setEndGameModal] = useState(false);
   const [showTarget, setShowTarget] = useState(false);
   const [startCount, setStartCount] = useState(false);
-  const [selectedTarget, setSelectedTarget] = useState();
-  const [coordCheckResult, setCoordCheckResult] = useState();
   let [counter, setCounter] = useState(0);
 
   // on click gets coordinates of click
@@ -50,7 +52,7 @@ function App() {
     setAbsoluteCoords([absoluteX, absoluteY]);
   };
 
-  // game start
+  // game start, creates a new user and enables the play area
   const gameStartHandler = async () => {
     const newUser = await createUser();
     setUserId(newUser.id);
@@ -77,19 +79,43 @@ function App() {
         finaltime={dbFinalTime}
         userid={userId}
       />
-      <Targetbox targetshow={showTarget} coords={absoluteCoords} />
+      <Targetbox
+        targetshow={showTarget}
+        coords={absoluteCoords}
+        targetnumber={0}
+      />
+      <ConfirmBox
+        targetshow={confirmOne[0]}
+        coordx={confirmOne[1]}
+        coordy={confirmOne[2]}
+      />
+
+      <ConfirmBox
+        targetshow={confirmTwo[0]}
+        coordx={confirmTwo[1]}
+        coordy={confirmTwo[2]}
+      />
+
+      <ConfirmBox
+        targetshow={confirmThree[0]}
+        coordx={confirmThree[1]}
+        coordy={confirmThree[2]}
+      />
       <Dropdown
         dropdown={dropdownShow}
         dropdowncoords={absoluteCoords}
         targetcoords={coordinates}
         setDropdown={setDropdownShow}
-        setCoordCheck={setCoordCheckResult}
         userid={userId}
         setFinalTime={setdbFinalTime}
         setStartCount={setStartCount}
         setEndGameModal={setEndGameModal}
         startCount={startCount}
         endGameModal={endGameModal}
+        setShowTarget={setShowTarget}
+        setConfirmOne={setConfirmOne}
+        setConfirmTwo={setConfirmTwo}
+        setConfirmThree={setConfirmThree}
       />
       <div className="mainContent">
         <div className="header">
