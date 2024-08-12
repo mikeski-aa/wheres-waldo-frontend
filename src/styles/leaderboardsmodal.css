@@ -45,3 +45,8 @@
 .itemContainer.headings {
   border-bottom: 2px solid black;
 }
+
+.usernameRow {
+  text-overflow: ellipsis;
+  width: 100px;
+}

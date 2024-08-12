@@ -9,7 +9,10 @@ function Targets() {
       <div className="targetContainer">
         <h4>Find these three characters:</h4>
         <div className="findTargets">
-          <img className="targetImages" src={target1}></img>
+          <div className="test">
+            <img className="targetImages" src={target1}></img>
+          </div>
+
           <img className="targetImages" src={target2}></img>
           <img className="targetImages" src={target3}></img>
         </div>

@@ -14,9 +14,9 @@
 }
 
 .endGameContainer {
-  position: relative;
+  position: fixed;
   top: 50%;
-  left: 20%;
+  left: 50%;
   background-color: #ffffff;
   width: fit-content;
   display: flex;
@@ -25,6 +25,7 @@
   padding: 12px;
   box-shadow: 10px 10px 10px grey;
   backdrop-filter: blur(10px);
+  transform: translate(-50%, -50%);
 }
 
 .containerHeader {
@@ -48,4 +49,24 @@
   height: 1.5rem;
   text-align: center;
   font-size: 1.5rem;
+  width: 300px;
+}
+.error {
+  display: none;
+}
+
+.error.true {
+  display: block;
+  outline: 2px solid red;
+  width: inherit;
+  width: 300px;
+  text-align: center;
+}
+
+.nameInput.true {
+  outline: 2px solid red;
+}
+
+.endOkButton {
+  margin-top: 10px;
 }

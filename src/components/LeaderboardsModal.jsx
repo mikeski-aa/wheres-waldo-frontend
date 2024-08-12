@@ -5,7 +5,6 @@ function LeaderboardsModal(props) {
     props.setShow(false);
   };
 
-  console.log(props.leaderboard);
   return (
     <>
       <div className={`lboardModal ${props.show}`}>
@@ -14,8 +13,8 @@ function LeaderboardsModal(props) {
           <div className="myTable">
             <div className="tableHeader">Leaderboard</div>
             <div className="itemContainer headings">
-              <div className="usernameRow">Username</div>
-              <div className="gametimeRow">Time</div>
+              <div className="headingRowUname">Username</div>
+              <div className="headingRowTime">Time</div>
             </div>
             {props.leaderboard.map((item) => {
               return (

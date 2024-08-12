@@ -4,14 +4,28 @@ import "../styles/modal.css";
 
 function EndGameModal(props) {
   const [username, setUsername] = useState("");
-  const okClickHandler = async () => {
+  const [errorState, setErrorState] = useState(false);
+  const okClickHandler = async (e) => {
     if (username === "") {
       return;
     }
+
+    console.log(errorState);
+    if (errorState === true) {
+      return e.preventDefault();
+    }
+
     const response = await updateUserName(props.userid, username);
     console.log(response);
+    window.location.href = "/";
   };
   const handleNameInput = (e) => {
+    if (e.target.value.length > 7) {
+      setErrorState(true);
+    } else {
+      setErrorState(false);
+    }
+
     setUsername(e.target.value);
   };
   return (
@@ -32,12 +46,17 @@ function EndGameModal(props) {
                 type="text"
                 placeholder="Username Unknown"
                 onChange={(e) => handleNameInput(e)}
+                className={`nameInput ${errorState}`}
               ></input>
-              <button className="endOkButton" onClick={okClickHandler}>
-                OK
-              </button>
+              <div className={`error ${errorState}`}>
+                Name too long! Current length
+                {` ` + username.length}
+              </div>
             </form>
           </div>
+          <button className="endOkButton" onClick={(e) => okClickHandler(e)}>
+            OK
+          </button>
         </div>
       </div>
     </>
