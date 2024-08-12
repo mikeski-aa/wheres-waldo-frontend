@@ -16,4 +16,15 @@
 
 .leaderboardsBtn {
   width: fit-content;
+  background-color: white;
+  border-radius: 12px;
+  font-size: 2rem;
+  margin-top: 5px;
+  transition-duration: 1s;
+}
+
+.leaderboardsBtn:hover {
+  background: limegreen;
+  box-shadow: 2px 5px;
+  cursor: pointer;
 }

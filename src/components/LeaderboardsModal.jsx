@@ -9,12 +9,14 @@ function LeaderboardsModal(props) {
     <>
       <div className={`lboardModal ${props.show}`}>
         <div className="lboardContainer">
-          <button onClick={handleCloseClick}>Close</button>
+          <button className="closeLeaderboardBtn" onClick={handleCloseClick}>
+            Close
+          </button>
           <div className="myTable">
             <div className="tableHeader">Leaderboard</div>
             <div className="itemContainer headings">
               <div className="headingRowUname">Username</div>
-              <div className="headingRowTime">Time</div>
+              <div className="headingRowTime">Time (s)</div>
             </div>
             {props.leaderboard.map((item) => {
               return (

@@ -25,21 +25,22 @@ function Targets(props) {
             src={target1}
           ></img>
           <img
-            className={`targetImages two ${props.confirmTwo[0]}`}
-            src={target2}
-          ></img>
-          <img
-            className={`targetImages three ${props.confirmThree[0]}`}
-            src={target3}
-          ></img>
-          <img
             className={`tone ${props.confirmOne[0]}`}
             src={target1checked}
+          ></img>
+          <img
+            className={`targetImages two ${props.confirmTwo[0]}`}
+            src={target2}
           ></img>
           <img
             className={`ttwo ${props.confirmTwo[0]}`}
             src={target2checked}
           ></img>
+          <img
+            className={`targetImages three ${props.confirmThree[0]}`}
+            src={target3}
+          ></img>
+
           <img
             className={`tthree ${props.confirmThree[0]}`}
             src={target3checked}

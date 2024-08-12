@@ -33,6 +33,7 @@
   height: 50vh;
   overflow: scroll;
   width: 40vw;
+  padding-right: 10px;
 }
 
 .itemContainer {
@@ -52,4 +53,18 @@
 .usernameRow {
   text-overflow: ellipsis;
   width: 100px;
+}
+
+.closeLeaderboardBtn {
+  background-color: red;
+  font-size: 3rem;
+  width: fit-content;
+  height: fit-content;
+  position: absolute;
+  top: 20%;
+  left: 75%;
+}
+
+.closeLeaderboardBtn:hover {
+  cursor: pointer;
 }

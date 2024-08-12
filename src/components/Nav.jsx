@@ -11,7 +11,7 @@ function Nav(props) {
     <>
       <div className="navBarContainer">
         <button className="leaderboardsBtn" onClick={handleShowModal}>
-          leaderboards
+          Leaderboard
         </button>
       </div>
     </>
