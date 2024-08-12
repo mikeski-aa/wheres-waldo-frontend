@@ -8,3 +8,20 @@
   flex-direction: column;
   align-items: center;
 }
+
+.targetImages {
+  width: 72px;
+  height: 72px;
+}
+
+.targetImages.one.true,
+.targetImages.two.true,
+.targetImages.three.true {
+  display: none;
+}
+
+.tone.false,
+.ttwo.false,
+.tthree.false {
+  display: none;
+}

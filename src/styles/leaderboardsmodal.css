@@ -30,6 +30,9 @@
   width: fit-content;
   border: 3px solid black;
   transform: translate(-50%, -50%);
+  height: 50vh;
+  overflow: scroll;
+  width: 40vw;
 }
 
 .itemContainer {

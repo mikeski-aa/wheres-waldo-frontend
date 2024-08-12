@@ -127,7 +127,11 @@ function App() {
           <div className={`game ${gameStart}`}>
             <h4>Time elapsed:</h4>
             <h4 className="counterTitle">{counter / 10}</h4>
-            <Targets />
+            <Targets
+              confirmOne={confirmOne}
+              confirmTwo={confirmTwo}
+              confirmThree={confirmThree}
+            />
           </div>
         </div>
 
