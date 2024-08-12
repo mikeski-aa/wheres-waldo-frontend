@@ -1,6 +1,6 @@
 // call API to create a user
 async function createUser() {
-  const url = `http://localhost:3000/api/newuser`;
+  const url = `https://waldo-api-backend.adaptable.app/api/newuser`;
 
   try {
     const response = await fetch(url, {
@@ -23,7 +23,7 @@ async function createUser() {
 async function checkCoordinates(xcoord, ycoord, targetid) {
   // url- query === ?nameItem=VALUE&anotherItem=VALUE2
   const dataString = `xcoord=${xcoord}&ycoord=${ycoord}&targetid=${targetid}`;
-  const url = `http://localhost:3000/api/check?${dataString}`;
+  const url = `https://waldo-api-backend.adaptable.app/api/check?${dataString}`;
 
   try {
     const response = await fetch(url, { method: "GET" });
@@ -40,7 +40,7 @@ async function checkCoordinates(xcoord, ycoord, targetid) {
 }
 
 async function updateUser(resultObject, userId) {
-  const url = `http://localhost:3000/api/putuser/${userId}`;
+  const url = `https://waldo-api-backend.adaptable.app/api/putuser/${userId}`;
 
   const toSend = {
     id: resultObject.id,
@@ -69,7 +69,7 @@ async function updateUser(resultObject, userId) {
 }
 
 async function checkWin(userId) {
-  const url = `http://localhost:3000/api/checkwin/${userId}`;
+  const url = `https://waldo-api-backend.adaptable.app/api/checkwin/${userId}`;
 
   try {
     const response = await fetch(url, { method: "GET" });
@@ -86,7 +86,7 @@ async function checkWin(userId) {
 }
 
 async function stopTimer(userId) {
-  const url = `http://localhost:3000/api/puttimer/${userId}`;
+  const url = `https://waldo-api-backend.adaptable.app/api/puttimer/${userId}`;
   try {
     const response = await fetch(url, { method: "PUT" });
     if (!response.ok) {
@@ -99,7 +99,7 @@ async function stopTimer(userId) {
 }
 
 async function getFinalTime(userId) {
-  const url = `http://localhost:3000/api/getfinaltime/${userId}`;
+  const url = `https://waldo-api-backend.adaptable.app/api/getfinaltime/${userId}`;
 
   try {
     const response = await fetch(url, { method: "GET" });
@@ -114,7 +114,7 @@ async function getFinalTime(userId) {
 }
 
 async function updateUserName(userId, name) {
-  const url = `http://localhost:3000/api/putname/${userId}`;
+  const url = `https://waldo-api-backend.adaptable.app/api/putname/${userId}`;
   const newbody = {
     username: name,
   };
@@ -141,7 +141,7 @@ async function updateUserName(userId, name) {
 
 async function putFinalTime(userId, time) {
   const datastring = `userid=${userId}&time=${time}`;
-  const url = `http://localhost:3000/api/putfinaltime?${datastring}`;
+  const url = `https://waldo-api-backend.adaptable.app/api/putfinaltime?${datastring}`;
 
   try {
     const response = await fetch(url, { method: "PUT" });
@@ -158,7 +158,7 @@ async function putFinalTime(userId, time) {
 }
 
 async function GetLeaderboards() {
-  const url = `http://localhost:3000/api/getleaderboards`;
+  const url = `https://waldo-api-backend.adaptable.app/api/getleaderboards`;
 
   try {
     const response = await fetch(url, { method: "GET" });
