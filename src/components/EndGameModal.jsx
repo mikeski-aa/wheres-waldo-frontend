@@ -7,7 +7,7 @@ function EndGameModal(props) {
   const [errorState, setErrorState] = useState(false);
   const okClickHandler = async (e) => {
     if (username === "") {
-      return;
+      return (window.location.href = "/");
     }
 
     console.log(errorState);
