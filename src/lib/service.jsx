@@ -1,5 +1,5 @@
 // call API to create a user
-const baseurl = "https://waldo-api-backend.adaptable.app/";
+const baseurl = "https://waldo-api-backend.adaptable.app";
 const localurl = "http://localhost:3000";
 
 async function createUser() {
